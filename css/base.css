@@ -1,0 +1,69 @@
+body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;	
+}
+
+#coolDownBabor{
+	display: inline-block;
+	white-space: nowrap;
+	width:100px;
+	background-color: #00EE00;	
+}
+
+#coolDownEstribor{
+	display: inline-block;
+	white-space: nowrap;	
+	width:100px;	
+	background-color: #00EE00;
+}
+
+#enemigoVidaNumero{
+	display: inline-block;
+	white-space: nowrap;		
+}
+
+#targetTituloVida{
+	display: inline-block;
+	white-space: nowrap;		
+}
+
+#enemigoVida{
+	display: inline-block;
+	white-space: nowrap;	
+	width:100px;	
+	background-color: #EE0000;
+}
+
+#loading{
+	display:none;
+	position:absolute;
+	top:40%;
+	left:50%;
+	text-align:center;
+	clear:both;
+	z-index: 9999;
+}
+
+#login{
+	z-index: 9998;
+}
+
+#dialog{
+	display:none;
+	background-color: #FFFFFF;
+}
+
+.nowrap{
+	display: inline-block;
+	white-space: nowrap;
+	width:2em;
+}
+.nowrapL{
+	display: inline-block;
+	position:relative;
+	white-space: nowrap;
+	width:6em;
+	clear:both;
+}
