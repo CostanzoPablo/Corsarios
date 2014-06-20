@@ -132,22 +132,22 @@ function checkEnemigs($con, $limite){
 		$enemig["undirX"] = $undir;
 
 
-
+$grados = 0;
 if ($row["posX"] - $posX - 100 >= 0 AND $row["posY"] - $posY >= 0){
 	$cara = 90*0;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($row["posY"] - $posY) / ($row["posX"] - $posX))))));	
+	$grados = $cara + (90 - rad2deg(abs(atan(abs(($row["posY"] - $posY) / abs($row["posX"] - $posX) + 0.0001)))));	
 }
 if ($row["posX"] - $posX >= 0 AND $row["posY"] - $posY <= 0){
 	$cara = 90*1;
-	$grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / ($row["posX"] - $posX))))));	
+	$grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / abs($row["posX"] - $posX) + 0.0001)))));	
 }
 if ($row["posX"] - $posX <= 0 AND $row["posY"] - $posY <= 0){
 	$cara = 90*2;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($row["posY"] - $posY) / ($row["posX"] - $posX))))));	
+	$grados = $cara + (90 - rad2deg(abs(atan(abs(($row["posY"] - $posY) / abs($row["posX"] - $posX) + 0.0001)))));	
 }
 if ($row["posX"] - $posX <= 0 AND $row["posY"] - $posY >= 0){
 	$cara = 90*3;
-	$grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / ($row["posX"] - $posX))))));	
+	$grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / abs($row["posX"] - $posX) + 0.0001)))));	
 }
 
 $direccion = (($grados * 1.575) / 90);
