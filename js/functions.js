@@ -8,7 +8,7 @@ function openObject(id) {
 
 
 function cleanString(aString){
-	return String(aString).replace("\n", "");
+	return String(aString).replace(/(\r\n|\n|\r)/gm, "");
 }
 
 function rad2deg(angle) {

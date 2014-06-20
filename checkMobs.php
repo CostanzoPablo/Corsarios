@@ -10,7 +10,7 @@ function checkMobs($con, $limite){
 		$vida = $row["vida"];
 	}	
 
-	if (rand(1, 99) == 99){
+	if (rand(1, 1000) >= 900){
 		$nPosX = rand(-1000, 1000) + $posX;
 		$nPosY = rand(-1000, 1000) + $posY;
 		$nVida =  intval(rand($vida / 2, $vida + ($vida / 4)));
