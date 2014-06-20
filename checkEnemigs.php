@@ -152,7 +152,7 @@ if ($row["posX"] - $posX <= 0 AND $row["posY"] - $posY >= 0){
 
 $direccion = (($grados * 1.575) / 90);
 
-		$enemig["grados"] = $grados + $tope;
+		$enemig["grados"] = $grados;
 		$enemigos[] = $enemig;
 	}	
 
