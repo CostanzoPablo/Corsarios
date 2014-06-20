@@ -31,7 +31,7 @@ function changeSky(aSky){
 	if (sky != aSky){
 		sceneCube.remove(objectSky);
 		scene.remove(objectPlane);
-		
+
 		if (aSky == 'morning'){
 			scene.fog = new THREE.Fog( 0x440100, 0, 1500 );
 			var ambient = 0x1b2434, diffuse = 0x778bFF, specular = 0xcecece, shininess = 20;
@@ -42,7 +42,7 @@ function changeSky(aSky){
 		}
 		if (aSky == 'afternoon'){
 			scene.fog = new THREE.Fog( 0x5f5e6e, 0, 1000 );
-			var ambient = 0x1b2434, diffuse = 0x778bFF, specular = 0xcecece, shininess = 20;			
+			var ambient = 0x1b2434, diffuse = 0x778bFF, specular = 0xcecece, shininess = 20;
 		}
 		if (aSky == 'night'){
 			scene.fog = new THREE.Fog( 0x101010, 0, 1200 );
@@ -62,8 +62,6 @@ function changeSky(aSky){
 		];
 
 		var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
-
-	var reflectionCube = THREE.ImageUtils.loadTextureCube( urls );
 
 	var map = THREE.ImageUtils.loadTexture( "cube4/" + aSky + "/agua.jpg" );
 
