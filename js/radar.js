@@ -28,8 +28,8 @@ function radarLimpiar(){
 
 
 function radarAgregar(unEnemigoId, unEnemigo, unEnemigoTop, unEnemigoLeft){
-	var enemigoTop = ((unEnemigoTop + 10000) * 150) / 20000;
-	var enemigoLeft = ((unEnemigoLeft + 10000) * 150) / 20000;
+	var enemigoTop = ((unEnemigoTop + 10000) * 120) / 20000;
+	var enemigoLeft = ((unEnemigoLeft + 10000) * 240) / 20000;
 
 	if (unEnemigoId == playerId){
 		var iconoPlayer = 'menu_player';
