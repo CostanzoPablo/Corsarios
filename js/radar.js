@@ -26,17 +26,18 @@ function radarLimpiar(){
 	$("#menu_enemigos").html('');
 }
 
+
 function radarAgregar(unEnemigoId, unEnemigo, unEnemigoTop, unEnemigoLeft){
-	var enemigoTop = ((unEnemigoTop + 10000) * 120) / 20000;
-	var enemigoLeft = ((unEnemigoLeft + 10000) * 290) / 20000;
+	var enemigoTop = ((unEnemigoTop + 10000) * 150) / 20000;
+	var enemigoLeft = ((unEnemigoLeft + 10000) * 150) / 20000;
 
 	if (unEnemigoId == playerId){
-		var iconoPlayer = 'menu_enemigo';
-	}else{
 		var iconoPlayer = 'menu_player';
+	}else{
+		var iconoPlayer = 'menu_enemigo';
 	}
 
-	$("#menu_enemigos").append('<div class="' + iconoPlayer + '" style="top:' + enemigoTop + 'px;left:' + enemigoLeft + 'px;">&nbsp;</div>');
+	$("#menu_enemigos").append('<div class="' + iconoPlayer + '" style="top:' + enemigoTop + 'px;left:' + enemigoLeft + 'px;" onclick="viajar(' + unEnemigoTop + ', ' + unEnemigoLeft + ');">&nbsp;</div>');
 }
 
 function checkRadarEnemigs(dataEnemigs, playerDirection){
@@ -54,7 +55,7 @@ function radarRotar(rotarGrados){
 
 	var virar = rad2deg(rotarGrados);
 	//console.log(virar);
-	virar = (virar * -1) - 45;
+	virar = (virar * -1) + 45;
 	var div = document.getElementById('menu_camera');
 	if (div){
 		div.style.webkitTransform = 'rotate('+virar+'deg)'; 
@@ -66,7 +67,7 @@ function radarRotar(rotarGrados){
 }
 
 function radarDireccion(gradosDireccion){
-	gradosDireccion = (gradosDireccion * -1) + 45;
+	gradosDireccion = (gradosDireccion * -1) - 225;
 	$("#menu_inferior").append('<div id="menu_direction">&nbsp;</div>');
 	
     var div = document.getElementById('menu_direction');
