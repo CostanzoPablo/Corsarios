@@ -41,7 +41,7 @@ function checkEnemigs($con, $limite){
 		if ($nivel >= 31 AND $nivel <= 40){
 			$enemig["modelo"] = 'Galeon';
 		}
-		if ($nivel >= 41 AND $nivel <= 50){
+		if ($nivel >= 41){
 			$enemig["modelo"] = 'Fragata';
 		}
 		
@@ -104,7 +104,7 @@ function checkEnemigs($con, $limite){
 		if ($nivel >= 31 AND $nivel <= 40){
 			$enemig["modelo"] = 'Galeon';
 		}
-		if ($nivel >= 41 AND $nivel <= 50){
+		if ($nivel >= 41){
 			$enemig["modelo"] = 'Fragata';
 		}
 

@@ -23,7 +23,11 @@ function checkMobs($con, $limite){
 		$enemig["id"] = $row["id"];
 		$enemig["posX"] = $row["posX"] - $posX;
 		$enemig["posY"] = $row["posY"] - $posY;
-		$enemig["vida"] = intval(($row["vida"] * 100) / $row["vidaTotal"]);
+		if ($row["vidaTotal"] > 0){
+		   $enemig["vida"] = intval(($row["vida"] * 100) / $row["vidaTotal"]);
+		}else{
+		   $enemig["vida"] = 0;
+		}
 		$enemig["model"] = $row["model"];
 		$enemig["direction"] = $row["direction"];
 		$enemigos[] = $enemig;
