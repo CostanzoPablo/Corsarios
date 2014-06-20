@@ -147,7 +147,14 @@ $caduca = $ahora + (($errorDisparo * 8) / 1030);*/
 $caduca = time() + 6;
 
 $danio = $nivel * 1;
+$danioMob = $danio / 10;
 
+	$sky = date("H", time());
+	$dia = date("N", time());
+	if (($sky >= 0 AND $sky <= 5 AND $dia == 6) OR ($sky >= 20 AND $sky <= 23 AND $dia == 5)){
+		$danio = $danio * 7;
+	}
+	
 if ($nivel <= 10){
 	$arma = 'Lanza';
 }
@@ -168,8 +175,8 @@ $sql=("INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha,
 if (!mysql_query($sql,$con)){
 	die('error');
 }	
-$danio = $danio / 5;
-$sql=("INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_GET[target]', '$_SESSION[player]', '$destinoX', '$destinoY', '$posX', '$posY', '$caduca', '$direccion', '$danio', '$arma', 'player')");
+
+$sql=("INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_GET[target]', '$_SESSION[player]', '$destinoX', '$destinoY', '$posX', '$posY', '$caduca', '$direccion', '$danioMob', '$arma', 'player')");
 if (!mysql_query($sql,$con)){
 	die('error');
 }

@@ -7,6 +7,12 @@ while($row = mysql_fetch_array($sql)){
 	$delta = ($ahora - $row["ucheck"]);
 	$velocidad = 4;
 
+	$sky = date("H", time());
+	$dia = date("N", time());
+	if (($sky >= 0 AND $sky <= 5 AND $dia == 6) OR ($sky >= 20 AND $sky <= 23 AND $dia == 5)){
+		$velocidad = $velocidad * 7;
+	}
+	
 	$sql2=mysql_query("SELECT * FROM players WHERE id = '$row[player]'",$con);
 	while($row2 = mysql_fetch_array($sql2)){
 		$core_playerX = $row2["posX"];

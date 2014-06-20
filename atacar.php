@@ -146,6 +146,12 @@ $caduca = time() + 6;
 
 $danio = $nivel * 1;
 
+	$sky = date("H", time());
+	$dia = date("N", time());
+	if (($sky >= 0 AND $sky <= 5 AND $dia == 6) OR ($sky >= 20 AND $sky <= 23 AND $dia == 5)){
+		$danio = $danio * 7;
+	}	
+
 if ($nivel <= 10){
 	$arma = 'Lanza';
 }
