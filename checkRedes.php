@@ -42,7 +42,7 @@ function checkRedes($con){
 
 		$direccion = (($grados * 1.575) / 90);
 
-		$enemig["grados"] = $grados + $tope;
+		$enemig["grados"] = $grados;
 		$enemigos[] = $enemig;
 	}	
 
