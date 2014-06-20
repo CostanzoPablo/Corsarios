@@ -10,19 +10,6 @@ function checkMobs($con, $limite){
 		$vida = $row["vida"];
 	}	
 
-	if (rand(1, 1000) >= 900){
-		$nPosX = rand(-1000, 1000) + $posX;
-		$nPosY = rand(-1000, 1000) + $posY;
-		$nVida =  intval(rand($vida / 2, $vida + ($vida / 4)));
-		$nModel = 'Tortuga';
-		$nDirection = 0;
-		$nOro = ceil($nVida / 10) + 1;
-		$sql=("INSERT INTO mobs (vida, posX, posY, model, direction, oro, vidaTotal) VALUES ('$nVida', '$nPosX', '$nPosY', '$nModel', '$nDirection', '$nOro', '$nVida')");
-		if (!mysql_query($sql,$con)){
-			die('error');
-		}			
-	}
-
 	$minimoX = $posX - $limite;
 	$minimoY = $posY - $limite;
 	$maximoX = $posX + $limite;	
@@ -42,6 +29,20 @@ function checkMobs($con, $limite){
 		$enemigos[] = $enemig;
 	}	
 
+	if (count($enemigos) < 20){
+    	if (rand(1, 1000) >= 950){
+    		$nPosX = rand(-1000, 1000) + $posX;
+    		$nPosY = rand(-1000, 1000) + $posY;
+    		$nVida =  intval(rand($vida / 2, $vida + ($vida / 4)));
+    		$nModel = 'Tortuga';
+    		$nDirection = 0;
+    		$nOro = ceil($nVida / 10) + 1;
+    		$sql=("INSERT INTO mobs (vida, posX, posY, model, direction, oro, vidaTotal) VALUES ('$nVida', '$nPosX', '$nPosY', '$nModel', '$nDirection', '$nOro', '$nVida')");
+    		if (!mysql_query($sql,$con)){
+    			die('error');
+    		}			
+    	}
+	}
 	return $enemigos;
 }
 ?>
