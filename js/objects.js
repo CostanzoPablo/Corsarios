@@ -304,8 +304,9 @@ function searchObjectClicked(event){
 				target = targetGlow(intersects[0]['object']);
 				targetId = intersects[0]['object']['id'];
 				$("#dialog").dialog('option', 'title', 'Objetivo: ' + buscarBarcoNombrexId(intersects[0]['object']['id']) + ' Vida: ' + buscarBarcoVidaxId(intersects[0]['object']['id']) + '%');
-				$("#dialog").html('<div id="" onclick="javascript:pescar();">PESCAR</div><br><br>' +
-				'<div id="" onclick="javascript:mejoras();">MEJORAS</div>');
+				$("#dialog").html('<div id="" onclick="javascript:pescar();">PESCAR</div><br>' +
+				'<div id="" onclick="javascript:mejoras();">MEJORAS</div><br>' + 
+				'<div id="" onclick="javascript:reparar();">REPARAR</div>');
 				$("#dialog").dialog('open');
 				return true;
 			}else{
