@@ -54,19 +54,19 @@ mysql_query("UPDATE players SET ataque = '$ahora' WHERE id = '$_SESSION[player]'
 
 if ($destinoX-$posX >= 0 AND $destinoY-$posY >= 0){
 	$cara = 90*0;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / abs($destinoX-$posX))))));	
+	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
 }
 if ($destinoX-$posX >= 0 AND $destinoY-$posY <= 0){
 	$cara = 90*1;
-	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / abs($destinoX-$posX))))));	
+	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
 }
 if ($destinoX-$posX <= 0 AND $destinoY-$posY <= 0){
 	$cara = 90*2;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / abs($destinoX-$posX))))));	
+	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
 }
 if ($destinoX-$posX <= 0 AND $destinoY-$posY >= 0){
 	$cara = 90*3;
-	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / abs($destinoX-$posX))))));	
+	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
 }
 
 $direccion = (($grados * 1.575) / 90);
@@ -164,7 +164,7 @@ if ($nivel >= 21 AND $nivel <= 30){
 if ($nivel >= 31 AND $nivel <= 40){
 	$arma = 'Canion';
 }
-if ($nivel >= 41 AND $nivel <= 50){
+if ($nivel >= 41){
 	$arma = 'CanionFuego';
 }
 

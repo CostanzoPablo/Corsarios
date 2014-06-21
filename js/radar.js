@@ -43,7 +43,8 @@ function radarAgregar(unEnemigoId, unEnemigo, unEnemigoTop, unEnemigoLeft){
 function checkRadarEnemigs(dataEnemigs, playerDirection){
 	radarLimpiar();
 	//var virar = parseInt((playerDirection * 360) / 6.3)+90;
-	var virar = rad2deg(playerDirection)+90;
+	
+	var virar = rad2deg(playerDirection);
 	radarDireccion(virar);
 	for(var enemig in dataEnemigs){	
 		radarAgregar(dataEnemigs[enemig].id, dataEnemigs[enemig].nick, dataEnemigs[enemig].posX, dataEnemigs[enemig].posZ);
@@ -54,8 +55,7 @@ function radarRotar(rotarGrados){
 	camaraGrados = rotarGrados;
 
 	var virar = rad2deg(rotarGrados);
-	//console.log(virar);
-	virar = (virar * -1) - 45;
+
 	var div = document.getElementById('menu_camera');
 	if (div){
 		div.style.webkitTransform = 'rotate('+virar+'deg)'; 
@@ -67,7 +67,6 @@ function radarRotar(rotarGrados){
 }
 
 function radarDireccion(gradosDireccion){
-	gradosDireccion = (gradosDireccion * -1) + 45;
 	$("#menu_inferior").append('<div id="menu_direction">&nbsp;</div>');
 	
     var div = document.getElementById('menu_direction');

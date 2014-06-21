@@ -23,14 +23,23 @@ document.addEventListener( 'mouseup', onDocumentMouseUp, true );
 	    moveCamera = 'down';
 	}    */    
 //}
+var mouseClick = true;
+function enableMouseClick(){
+		 mouseClick = true;
+}
 
+function disableMouseClick(){
+		 mouseClick = false;
+}
 
 function onDocumentMouseUp(event) {
 	mouseDown = false;
 	if (!$("#dialog").dialog('isOpen')){
 		if (event.clientX == mouseX && event.clientY == mouseY){
-			if (!searchObjectClicked(event)){//add Glow
-					searchWaterClicked(event);
+		    if (mouseClick){
+    			if (!searchObjectClicked(event)){//add Glow
+    					searchWaterClicked(event);
+    			}
 			}
 		}
 	}
