@@ -1,3 +1,6 @@
+<?php
+include("./conectar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -214,6 +217,20 @@
 	  	   <h2>Agradecimiento</h2>
 	  	   <div>Poder llegar a coordinar e iniciar el desarrollo de este proyecto, fue gracias al centro de estudiantes La Fuente - UNLP - Informatica quien creo el area UIV (Unidad de Investigacion de Video Juegos)</div>
 	  	   <div><img src="./images/lafuente.png"></div>
+	  </div>
+	  
+	  <div class="row">
+	  	   <div><h2>Jugadores</h2><b>Nick - Ultimo acceso</b></div>
+	  	   <?php
+            $total=0;
+        	$sql=mysql_query("SELECT * FROM players ORDER by uclick DESC",$con);
+        	while($row = mysql_fetch_array($sql)){
+        		$total++;
+        		echo $row["nick"].' - '.date("d/m/Y H:i", $row["uclick"]).'<br>';
+        	}	
+        	echo '<br>
+        	<b>Total: '.$total.'</b><br>';
+	  ?>
 	  </div>
       <!-- FOOTER -->
       <footer>
