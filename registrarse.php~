@@ -5,10 +5,10 @@ include('./conectar.php');
 	if (isset($_SESSION["player"])){
 		die("logout"); 
 	}		
-	$nick = null;
+
 	if (isset($_POST["nick"])){
 		//Si no esta identificado y esta queriendo identificarse...
-		if (strlen($_POST["clave"]) < 8){
+		if (strlen($_POST["pass"]) < 8){
 			die("password");	
 		}
 
@@ -27,7 +27,7 @@ include('./conectar.php');
 		}
 		$mail = $_POST["mail"];	
 		$nick = $_POST["nick"];
-		$pass = md5('fempire42014'.$_POST["clave"]);
+		$pass = md5('fempire42014'.$_POST["pass"]);
 	}
 
 	if (isset($_GET["nick"])){
@@ -58,9 +58,6 @@ include('./conectar.php');
 		$pass = md5('fempire42014'.$_GET["pass"]);
 	}
 
-	if ($nick == NULL){
-		die('Error interno del servidor');
-	}
 	//insert into.... etc
 	$posX = rand(-10000, 10000);
 	$posY = rand(-10000, 10000);
