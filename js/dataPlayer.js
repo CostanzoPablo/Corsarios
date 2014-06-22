@@ -26,7 +26,7 @@ function cargarPlayerData(dataPlayer, dataWaypoint, dataMensajes){
 	$("#infoButton").html('<div id="menu_superior">' + '<div id="menu_mensaje" onmousedown="mostrarMensajes();return false;">MENSAJES (' + mensajes.length + ')</div>' + '<div id="menu_nick">' + dataPlayer.nick + '</div>' + '<div id="menu_logout" onmousedown="logout();return false;">LOGOUT</div>' + '</div>');
 	$("#infoButton").append('<div id="menu_secundario">' + '<div id="menu_oro">Oro: ' + dataPlayer.oro + '</div>' + '<div id="menu_vida">Vida: ' + dataPlayer.vida + '%' +  ' de ' + dataPlayer.vidaTope + '</div>' + '</div>');
 	
-	var destinoTiempo = (Math.abs(dataWaypoint.x) + Math.abs(dataWaypoint.y)) / 2;
+	var destinoTiempo = (Math.abs(dataWaypoint.x) + Math.abs(dataWaypoint.y)) / 4;
 	if (isNaN(destinoTiempo)){
 	    destinoTiempo = "Anclado";
 	}else{

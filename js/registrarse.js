@@ -54,29 +54,29 @@ $(function() {
 
 function validarRegistro(){
 
-	$("#nick").removeClass('error');
-	$("#mail").removeClass('error');
-	$("#pass").removeClass('error');
-	$("#rpass").removeClass('error');
+	$("#registrarseNick").removeClass('error');
+	$("#registrarseMail").removeClass('error');
+	$("#registrarseClave").removeClass('error');
+	$("#registrarseRclave").removeClass('error');
 
-	if(!($("#nick").val().length > 2)){
-		$("#nick").focus();
-		$("#nick").addClass('error');
+	if(!($("#registrarseNick").val().length > 2)){
+		$("#registrarseNick").focus();
+		$("#registrarseNick").addClass('error');
 		return 'Completar el campo Nick';
 	}	
-	if(!(IsEmail($("#mail").val()))){
-		$("#mail").focus();
-		$("#mail").addClass('error');
+	if(!(IsEmail($("#registrarseMail").val()))){
+		$("#registrarseMail").focus();
+		$("#registrarseMail").addClass('error');
 		return 'Completar el campo Mail';
 	}	
-	if(!($("#clave").val().length >= 7)){
-		$("#clave").focus();
-		$("#clave").addClass('error');
+	if(!($("#registrarseClave").val().length >= 7)){
+		$("#registrarseClave").focus();
+		$("#registrarseClave").addClass('error');
 		return 'Completar el campo Clave. Minimo 6 caracteres';
 	}	
-	if(!($("#clave").val() == $("#rclave").val())){
-		$("#rclave").focus();
-		$("#rclave").addClass('error');
+	if(!($("#registrarseClave").val() == $("#registrarseRclave").val())){
+		$("#registrarseRclave").focus();
+		$("#registrarseRclave").addClass('error');
 		return 'Completar el campo Repetir Clave igual que en el campo Clave';
 	}		
 	if(!($("#formRegistrarseAcepto").is(':checked'))) { 

@@ -6,28 +6,28 @@ include('./conectar.php');
 		die("logout"); 
 	}		
 	$nick = null;
-	if (isset($_POST["nick"])){
+	if (isset($_POST["registrarseNick"])){
 		//Si no esta identificado y esta queriendo identificarse...
-		if (strlen($_POST["clave"]) < 8){
+		if (strlen($_POST["registrarseClave"]) < 8){
 			die("password");	
 		}
 
-		if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL) OR $_POST["mail"] == NULL) {
+		if (!filter_var($_POST["registrarseMail"], FILTER_VALIDATE_EMAIL) OR $_POST["registrarseMail"] == NULL) {
 		    die("mail");
 		}
 
-		$sql=mysql_query("SELECT * FROM players WHERE nick = '$_POST[nick]'",$con);
+		$sql=mysql_query("SELECT * FROM players WHERE nick = '$_POST[registrarseNick]'",$con);
 		while($row = mysql_fetch_array($sql)){
 			die('existeNick');
 		}	
 
-		$sql=mysql_query("SELECT * FROM players WHERE mail = '$_POST[mail]'",$con);
+		$sql=mysql_query("SELECT * FROM players WHERE mail = '$_POST[registrarseMail]'",$con);
 		while($row = mysql_fetch_array($sql)){
 			die('existeMail');
 		}
-		$mail = $_POST["mail"];	
-		$nick = $_POST["nick"];
-		$pass = md5('fempire42014'.$_POST["clave"]);
+		$mail = $_POST["registrarseMail"];	
+		$nick = $_POST["registrarseNick"];
+		$pass = md5('fempire42014'.$_POST["registrarseClave"]);
 	}
 
 	if (isset($_GET["nick"])){

@@ -75,10 +75,10 @@
       </div>
       <div class="modal-body">
         <form id="formularioRegistrarse" action="./registrarse.php" method="POST">
-          <div><input name="nick" id="nick" placeholder="Nick" type="text" class="defaultInput"></div>
-          <div><input name="mail" id="mail" placeholder="E-Mail" type="text" class="defaultInput"></div>
-          <div><input name="clave" id="clave" placeholder="Clave" type="password" class="defaultInput"></div>
-          <div><input name="rclave" id="rclave" placeholder="Repetir Clave" type="password" class="defaultInput"></div>
+          <div><input name="registrarseNick" id="registrarseNick" placeholder="Nick" type="text" class="defaultInput"></div>
+          <div><input name="registrarseMail" id="registrarseMail" placeholder="E-Mail" type="text" class="defaultInput"></div>
+          <div><input name="registrarseClave" id="registrarseClave" placeholder="Clave" type="password" class="defaultInput"></div>
+          <div><input name="registrarseRclave" id="registrarseRclave" placeholder="Repetir Clave" type="password" class="defaultInput"></div>
           <div><input id="formRegistrarseAcepto" type="checkbox" value="acepto"><a href="./index.php?seccion=terminos" target="_blank">&nbsp;Acepto los Términos y condiciones</a> y la <a href="./index.php?seccion=politica" target="_blank">Política de privacidad</a></div>
         </form>
       </div>
@@ -187,7 +187,6 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
           <h2>OPEN SOURCE</h2>
           <p>Corsarios utiliza la licencia GNU General Public License (GPL). El objetivo del proyecto es que el codigo sea compartido, mejorado y distribuido libremente para el aprendizaje del desarrollo de video juegos. <a href="https://github.com/CostanzoPablo/Corsarios" target="_blank">Link del repositorio en github</a></p>
           <img src="./images/gpl.png" width="371" height="185">
@@ -211,13 +210,17 @@
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
-
+	  <div class="row">
+	  	   <h2>Agradecimiento</h2>
+	  	   <div>Poder llegar a coordinar e iniciar el desarrollo de este proyecto, fue gracias al centro de estudiantes La Fuente - UNLP - Informatica quien creo el area UIV (Unidad de Investigacion de Video Juegos)</div>
+	  	   <div><img src="./images/lafuente.png"></div>
+	  </div>
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2014 Corsarios, La Fuente - UNLP - Informatica. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; Copyleft 2014 Corsarios. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
-
+	  
     </div><!-- /.container -->
 
 
