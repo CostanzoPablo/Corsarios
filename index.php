@@ -220,6 +220,7 @@ include("./conectar.php");
 	  </div>
 	  
 	  <div class="row">
+	  	   <div class="col-lg-4">
 	  	   <div><h2>Jugadores</h2><b>Nick - Ultimo acceso</b></div>
 	  	   <?php
             $total=0;
@@ -230,7 +231,18 @@ include("./conectar.php");
         	}	
         	echo '<br>
         	<b>Total: '.$total.'</b><br>';
-	  ?>
+	  		?>
+	  		</div>
+	  	   <div class="col-lg-6">
+	  	   <div><h2>Comentarios / Bugs reportados</h2></div>
+	  	   <?php
+	  	    $i = 1;
+        	$sql=mysql_query("SELECT * FROM contacto ORDER by fecha DESC",$con);
+        	while($row = mysql_fetch_array($sql)){
+        		echo $i.') '.$row["seccion"].': '.$row["mensaje"].' <br>Nick: '.$row["mail"].' - '.date("d/m/Y H:i", $row["fecha"]).'<br>';
+        	}		  	   
+	  	   ?>
+	  	   </div>
 	  </div>
       <!-- FOOTER -->
       <footer>
