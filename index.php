@@ -135,7 +135,7 @@ include("./conectar.php");
       </ol>
       <div class="carousel-inner">
         <div class="item active">
-          <img src="./images/fempireA.png" alt="0 slide">
+          <img src="./images/CorsariosA.jpg" alt="0 slide">
           <div class="container">
             <div class="carousel-caption">
               <p>Con el mouse haciendo click sobre el agua, decidis a donde viajar</p>
@@ -143,7 +143,7 @@ include("./conectar.php");
           </div>
         </div>
         <div class="item">
-          <img src="./images/fempireD.png" alt="0 slide">
+          <img src="./images/CorsariosD.jpg" alt="0 slide">
           <div class="container">
             <div class="carousel-caption">
               <p>Manteniendo click y arrastrando el mouse sobre el agua, podes ver 360</p>
@@ -151,7 +151,7 @@ include("./conectar.php");
           </div>
         </div>
         <div class="item">
-          <img src="./images/fempireB.png" alt="0 slide">
+          <img src="./images/CorsariosB.jpg" alt="0 slide">
           <div class="container">
             <div class="carousel-caption">
               <p>Haciendo click sobre tu barco, podes mejorarlo, pescar o repararlo</p>
@@ -159,7 +159,7 @@ include("./conectar.php");
           </div>
         </div>
         <div class="item">
-          <img src="./images/fempireC.png" alt="0 slide">
+          <img src="./images/CorsariosC.jpg" alt="0 slide">
           <div class="container">
             <div class="carousel-caption">
               <p>Haciendo click sobre monstruos u otros jugadores, podes atacarlos</p>
@@ -167,7 +167,7 @@ include("./conectar.php");
           </div>
         </div>        
         <div class="item">
-          <img src="./images/fempireE.png" alt="0 slide">
+          <img src="./images/CorsariosE.jpg" alt="0 slide">
           <div class="container">
             <div class="carousel-caption">
               <p>Al derrotar un monstruo u otro barco, podes capturar el cofre que deja caer al agua</p>
@@ -239,7 +239,22 @@ include("./conectar.php");
 	  	    $i = 1;
         	$sql=mysql_query("SELECT * FROM contacto ORDER by fecha DESC",$con);
         	while($row = mysql_fetch_array($sql)){
-        		echo $i.') '.$row["seccion"].': '.$row["mensaje"].' <br>Nick: '.$row["mail"].' - '.date("d/m/Y H:i", $row["fecha"]).'<br>';
+        		echo $i.') '.$row["seccion"].': '.$row["mensaje"].' <br>Nick: '.$row["mail"].' - '.date("d/m/Y H:i", $row["fecha"]).'&nbsp;';
+        		switch ($row["estado"]){
+        		   case 0:
+        		   		echo '<font color="#AA0000"><b>SIN ATENDER</b></font>';
+        		   		break;
+        		   case 1:
+        		   		echo '<font color="#AAAA00"><b>ATENDIENDO</b></font>';
+        		   		break;
+        		   case 2:
+        		   		echo '<font color="#00AA00"><b>ATENDIDO</b></font>';
+        		   		break;
+        		   case 3:
+        		   		echo '<font color="#000000"><b>RECHAZADO</b></font> Motivo: '.$row["comentario"];
+        		   		break;
+        		}
+				echo '<br>';
         	}		  	   
 	  	   ?>
 	  	   </div>

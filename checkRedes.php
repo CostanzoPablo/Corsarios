@@ -42,7 +42,7 @@ function checkRedes($con){
     		}
 		 }else{
     		  $cara = 90*3;
-		 	  $grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / abs($row["posX"] - $posX))))));
+		 	  $grados = $cara + (rad2deg(abs(atan(abs(($row["posY"] - $posY) / 0.1)))));
 		 }
 		 $direccion = (($grados * 1.575) / 90);
 

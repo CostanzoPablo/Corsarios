@@ -41,7 +41,7 @@ if ($playerRed != $_SESSION["player"]){//le robaron la red al $playerRed...
 	}	
 }
 
-if (abs($posX - $pescaPosX) < 70 AND abs($posY - $pescaPosY) < 70){
+if (abs(abs($posX) - abs($pescaPosX)) < 300 AND abs(abs($posY) - abs($pescaPosY)) < 300){
 	$ahora = time();
 	$oro += $oroPesca;
 	mysql_query("UPDATE players SET oro = '$oro' WHERE id = '$_SESSION[player]'");
@@ -51,7 +51,7 @@ if (abs($posX - $pescaPosX) < 70 AND abs($posY - $pescaPosY) < 70){
 		die('error');
 	}	
 }else{
-	die('lejos');
+	die('lejos Ya que Tu pos X: '.$posX.' - Red X: '.$pescaPosX.' es > 300 o.... Tu pos Y: '.$posY.' - Red Y: '.$pescaPosY.' es > 300');
 }
 
 $sql=("DELETE FROM pesca WHERE id = '$_GET[pesca]'");

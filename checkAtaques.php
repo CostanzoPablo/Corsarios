@@ -8,7 +8,7 @@ function garbageAtaques($con){
 			//sacarle vida al enemig
 			$vidaEnemigo = $row["vidaEnemigo"] - $row["danio"];
 			
-			if ($vidaEnemigo < 0){
+			if ($vidaEnemigo <= 0){
 				if ($row["oroEnemigo"] > 0){
 					$cofre = floor($row["oroEnemigo"] / 2);
 					$oroEnemigo = $oroEnemigo - $cofre;
@@ -83,7 +83,7 @@ function garbageMobAtaques($con){
 			//sacarle vida al enemig
 			$vidaEnemigo = $row["vidaEnemigo"] - $row["danio"];
 			
-			if ($vidaEnemigo < 0){		
+			if ($vidaEnemigo <= 0){		
 				    $sql2=("INSERT INTO cofres (oro, posX, posY) VALUES ('$row[oroEnemigo]', '$row[posX]', '$row[posY]')");
 				    if (!mysql_query($sql2,$con)){
 				          die('error');

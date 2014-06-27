@@ -31,7 +31,7 @@ if ($existe == false){
 	die('existe');
 }
 
-if (abs($posX - $cofrePosX) < 300 AND abs($posY - $cofrePosY) < 300){
+if (abs(abs($posX) - abs($cofrePosX)) < 300 AND abs(abs($posY) - abs($cofrePosY)) < 300){
 	$ahora = time();
 	$oro += $oroCofre;
 	mysql_query("UPDATE players SET oro = '$oro' WHERE id = '$_SESSION[player]'");

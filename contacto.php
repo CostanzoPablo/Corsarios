@@ -17,7 +17,7 @@ include('./conectar.php');
 
 	$ahora = time();
 
-	$sql=("INSERT INTO contacto (mail, seccion, mensaje, fecha) VALUES ('$_POST[contactoMail]', '$_POST[contactoSeccion]', '$_POST[contactoMensaje]', '$ahora')");
+	$sql=("INSERT INTO contacto (mail, seccion, mensaje, fecha, estado, comentario) VALUES ('$_POST[contactoMail]', '$_POST[contactoSeccion]', '$_POST[contactoMensaje]', '$ahora', '0', ' ')");
 	if (!mysql_query($sql,$con)){
 		  die('error' . mysql_error());
 	    }	
