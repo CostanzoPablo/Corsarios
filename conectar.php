@@ -1,13 +1,12 @@
 <?php
-$con = mysql_connect("localhost","root","");
-if (!$con)
-  {
-  echo 'Could not connect: ' . mysql_error();
-  die();
-  }
-mysql_select_db('corsarios', $con);
-require('./hack.php');
+$con = mysqli_connect("localhost", "lanormal_user", "lanormal");
+if (!$con) {
+    echo 'Could not connect: ' . mysqli_error($con);
+    die();
+}
+mysqli_select_db($con, 'corsarios');
+require './hack.php';
 
-include('./core.php');
+include './core.php';
 ?>
 
