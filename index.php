@@ -1,5 +1,9 @@
 <?php
-include("./conectar.php");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include "./conectar.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,40 +227,51 @@ include("./conectar.php");
 	  	   <div class="col-lg-4">
 	  	   <div><h2>Jugadores</h2><b>Nick - Ultimo acceso</b></div>
 	  	   <?php
-            $total=0;
-        	$sql=mysql_query("SELECT * FROM players ORDER by uclick DESC",$con);
-        	while($row = mysql_fetch_array($sql)){
-        		$total++;
-        		echo $row["nick"].' - '.date("d/m/Y H:i", $row["uclick"]).'<br>';
-        	}	
-        	echo '<br>
-        	<b>Total: '.$total.'</b><br>';
-	  		?>
+       $total = 0;
+       $sql = mysqli_query($con, "SELECT * FROM players ORDER by uclick DESC");
+       while ($row = mysqli_fetch_array($sql)) {
+           $total++;
+           echo $row["nick"] . ' - ' . date("d/m/Y H:i", $row["uclick"]) . '<br>';
+       }
+       echo '<br>
+        	<b>Total: ' .
+           $total .
+           '</b><br>';
+       ?>
 	  		</div>
 	  	   <div class="col-lg-6">
 	  	   <div><h2>Comentarios / Bugs reportados</h2></div>
 	  	   <?php
-	  	    $i = 1;
-        	$sql=mysql_query("SELECT * FROM contacto ORDER by fecha DESC",$con);
-        	while($row = mysql_fetch_array($sql)){
-        		echo $i.') '.$row["seccion"].': '.$row["mensaje"].' <br>Nick: '.$row["mail"].' - '.date("d/m/Y H:i", $row["fecha"]).'&nbsp;';
-        		switch ($row["estado"]){
-        		   case 0:
-        		   		echo '<font color="#AA0000"><b>SIN ATENDER</b></font>';
-        		   		break;
-        		   case 1:
-        		   		echo '<font color="#AAAA00"><b>ATENDIENDO</b></font>';
-        		   		break;
-        		   case 2:
-        		   		echo '<font color="#00AA00"><b>ATENDIDO</b></font>';
-        		   		break;
-        		   case 3:
-        		   		echo '<font color="#000000"><b>RECHAZADO</b></font> Motivo: '.$row["comentario"];
-        		   		break;
-        		}
-				echo '<br>';
-        	}		  	   
-	  	   ?>
+       $i = 1;
+       $sql = mysqli_query($con, "SELECT * FROM contacto ORDER by fecha DESC");
+       while ($row = mysqli_fetch_array($sql)) {
+           echo $i .
+               ') ' .
+               $row["seccion"] .
+               ': ' .
+               $row["mensaje"] .
+               ' <br>Nick: ' .
+               $row["mail"] .
+               ' - ' .
+               date("d/m/Y H:i", $row["fecha"]) .
+               '&nbsp;';
+           switch ($row["estado"]) {
+               case 0:
+                   echo '<font color="#AA0000"><b>SIN ATENDER</b></font>';
+                   break;
+               case 1:
+                   echo '<font color="#AAAA00"><b>ATENDIENDO</b></font>';
+                   break;
+               case 2:
+                   echo '<font color="#00AA00"><b>ATENDIDO</b></font>';
+                   break;
+               case 3:
+                   echo '<font color="#000000"><b>RECHAZADO</b></font> Motivo: ' . $row["comentario"];
+                   break;
+           }
+           echo '<br>';
+       }
+       ?>
 	  	   </div>
 	  </div>
       <!-- FOOTER -->

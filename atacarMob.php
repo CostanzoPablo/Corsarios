@@ -1,185 +1,104 @@
 <?php
 session_start();
-include('./conectar.php');
+include './conectar.php';
 
-if (!isset($_SESSION["player"])){
-	exit();
-}		
-
-if ($_SESSION["player"] == $_GET["target"]){
-	die('Imposible atacarte');
+if (!isset($_SESSION["player"])) {
+    exit();
 }
 
-$sql=mysql_query("SELECT * FROM players WHERE id = '$_SESSION[player]'",$con);
-while($row = mysql_fetch_array($sql)){
-	$direccion = $row["direction"];
-	$nivel = $row["nivel"];
-	$posX = $row["posX"];
-	$posY = $row["posY"];	
-	$undir = $row["undir"];
-
-	if ($row["ataque"] > time()){
-		echo 'alistando';
-		exit();
-	}
+if ($_SESSION["player"] == $_GET["target"]) {
+    die('Imposible atacarte');
 }
 
-if ($undir > 0){
-	die('pu');
+$sql = mysqli_query($con, "SELECT * FROM players WHERE id = '$_SESSION[player]'");
+while ($row = mysqli_fetch_array($sql)) {
+    $direccion = $row["direction"];
+    $nivel = $row["nivel"];
+    $posX = $row["posX"];
+    $posY = $row["posY"];
+    $undir = $row["undir"];
+
+    if ($row["ataque"] > time()) {
+        echo 'alistando';
+        exit();
+    }
 }
 
-$destinoX = NULL;
-$destinoY = NULL;
-
-$sql=mysql_query("SELECT * FROM mobs WHERE id = '$_GET[target]'",$con);
-while($row = mysql_fetch_array($sql)){
-	$destinoX = $row["posX"];
-	$destinoY = $row["posY"];	
+if ($undir > 0) {
+    die('pu');
 }
 
-if ($destinoX == NULL OR $destinoY == NULL ){
-	die('eu');
+$destinoX = null;
+$destinoY = null;
+
+$sql = mysqli_query($con, "SELECT * FROM mobs WHERE id = '$_GET[target]'");
+while ($row = mysqli_fetch_array($sql)) {
+    $destinoX = $row["posX"];
+    $destinoY = $row["posY"];
+}
+
+if ($destinoX == null or $destinoY == null) {
+    die('eu');
 }
 
 $ahora = time() + 6;
-/*if ($_GET["lado"] == 'estribor'){
-	mysql_query("UPDATE players SET estribor = '$ahora' WHERE id = '$_SESSION[player]'");
-	$direccion -= 1.575;
-}else{
-	mysql_query("UPDATE players SET babor = '$ahora' WHERE id = '$_SESSION[player]'");	
-	$direccion += 1.575;
-}*/
 
-mysql_query("UPDATE players SET ataque = '$ahora' WHERE id = '$_SESSION[player]'");	
+mysqli_query($con, "UPDATE players SET ataque = '$ahora' WHERE id = '$_SESSION[player]'");
 
-
-
-if ($destinoX-$posX >= 0 AND $destinoY-$posY >= 0){
-	$cara = 90*0;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
+if ($destinoX - $posX >= 0 and $destinoY - $posY >= 0) {
+    $cara = 90 * 0;
+    $grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY - $posY) / (abs($destinoX - $posX) + 0.00001))))));
 }
-if ($destinoX-$posX >= 0 AND $destinoY-$posY <= 0){
-	$cara = 90*1;
-	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
+if ($destinoX - $posX >= 0 and $destinoY - $posY <= 0) {
+    $cara = 90 * 1;
+    $grados = $cara + rad2deg(abs(atan(abs(($destinoY - $posY) / (abs($destinoX - $posX) + 0.00001)))));
 }
-if ($destinoX-$posX <= 0 AND $destinoY-$posY <= 0){
-	$cara = 90*2;
-	$grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
+if ($destinoX - $posX <= 0 and $destinoY - $posY <= 0) {
+    $cara = 90 * 2;
+    $grados = $cara + (90 - rad2deg(abs(atan(abs(($destinoY - $posY) / (abs($destinoX - $posX) + 0.00001))))));
 }
-if ($destinoX-$posX <= 0 AND $destinoY-$posY >= 0){
-	$cara = 90*3;
-	$grados = $cara + (rad2deg(abs(atan(abs(($destinoY-$posY) / (abs($destinoX-$posX)+0.00001))))));	
+if ($destinoX - $posX <= 0 and $destinoY - $posY >= 0) {
+    $cara = 90 * 3;
+    $grados = $cara + rad2deg(abs(atan(abs(($destinoY - $posY) / (abs($destinoX - $posX) + 0.00001)))));
 }
 
-$direccion = (($grados * 1.575) / 90);
-
-
-/*$grados = ($direccion * 90) / 1.575;
-
-while($grados > 360){
-	$grados = $grados - 360;
-}
-
-while ($grados < 0){
-	$grados = $grados + 360;
-}
-
-if ($grados > 360){
-	$grados = $grados - 360;
-}
-
-$caras = 0;
-while($grados > 90){
-	$grados -= 90;
-	$caras ++;
-}
-
-$radianes = deg2rad($grados);
-
-if ($caras == 0){
-	$radianes = deg2rad($grados);
-	$creceEjeX = sin($radianes);
-	$creceEjeY = cos($radianes); 
-}
-
-if ($caras == 1){
-	$creceEjeY = -1 * sin($radianes);
-	$creceEjeX = cos($radianes); 
-}
-
-if ($caras == 2){
-	$creceEjeX = -1 * sin($radianes);
-	$creceEjeY = -1 * cos($radianes); 
-}
-
-if ($caras == 3){
-	$creceEjeY = sin($radianes);
-	$creceEjeX = -1 * cos($radianes); 
-}
-
-if ($modelo == "Balsa"){
-	$fuerzaMaxX = (($_GET["angulo"] * 50) / 22);
-	$fuerzaMaxY = (($_GET["angulo"] * 50) / 22);
-}
-if ($modelo == "Canoa"){
-	$fuerzaMaxX = (($_GET["angulo"] * 600) / 22);
-	$fuerzaMaxY = (($_GET["angulo"] * 600) / 22);
-}
-
-
-
-
-$cosenoXdistanciaMax = ($creceEjeX * $fuerzaMaxX) + $posX;
-$senoXdistanciaMax = ($creceEjeY * $fuerzaMaxY) + $posY;
-
-$errorDisparo = abs($destinoX - $cosenoXdistanciaMax) + abs($destinoY - $senoXdistanciaMax);
-
-if ($errorDisparo < (5 + $disparos) * $disparos){	
-	$danio = (100 - $errorDisparo) * $disparos;	
-}else{
-	$danio = 0;
-}
-
-$ahora = time() + 5;
-//$distancia = abs(abs($destinoX) - abs($posX)) + abs(abs($destinoY) - abs($posY));
-$caduca = $ahora + (($errorDisparo * 8) / 1030);*/
+$direccion = ($grados * 1.575) / 90;
 
 $caduca = time() + 6;
 
 $danio = $nivel * 1;
 $danioMob = $danio / 5;
 
-	$sky = date("H", time());
-	$dia = date("N", time());
-	if (($sky >= 0 AND $sky <= 5 AND $dia == 6) OR ($sky >= 20 AND $sky <= 23 AND $dia == 5)){
-		$danio = $danio * 7;
-	}
-	
-if ($nivel <= 10){
-	$arma = 'Lanza';
-}
-if ($nivel >= 11 AND $nivel <= 20){
-	$arma = 'Flecha';
-}
-if ($nivel >= 21 AND $nivel <= 30){
-	$arma = 'FlechaFuego';
-}
-if ($nivel >= 31 AND $nivel <= 40){
-	$arma = 'Canion';
-}
-if ($nivel >= 41){
-	$arma = 'CanionFuego';
+$sky = date("H", time());
+$dia = date("N", time());
+if ($sky >= 0 and $sky <= 5 and $dia == 6 or $sky >= 20 and $sky <= 23 and $dia == 5) {
+    $danio = $danio * 7;
 }
 
-$sql=("INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_SESSION[player]', '$_GET[target]', '$posX', '$posY', '$destinoX', '$destinoY', '$caduca', '$direccion', '$danio', '$arma', 'mob')");
-if (!mysql_query($sql,$con)){
-	die('error');
-}	
+if ($nivel <= 10) {
+    $arma = 'Lanza';
+}
+if ($nivel >= 11 and $nivel <= 20) {
+    $arma = 'Flecha';
+}
+if ($nivel >= 21 and $nivel <= 30) {
+    $arma = 'FlechaFuego';
+}
+if ($nivel >= 31 and $nivel <= 40) {
+    $arma = 'Canion';
+}
+if ($nivel >= 41) {
+    $arma = 'CanionFuego';
+}
 
-$sql=("INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_GET[target]', '$_SESSION[player]', '$destinoX', '$destinoY', '$posX', '$posY', '$caduca', '$direccion', '$danioMob', '$arma', 'player')");
-if (!mysql_query($sql,$con)){
-	die('error');
+$sql = "INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_SESSION[player]', '$_GET[target]', '$posX', '$posY', '$destinoX', '$destinoY', '$caduca', '$direccion', '$danio', '$arma', 'mob')";
+if (!mysqli_query($con, $sql)) {
+    die('error');
+}
+
+$sql = "INSERT INTO ataques (player, enemig, origenX, origenY, posX, posY, fecha, direccion, danio, arma, atack) VALUES ('$_GET[target]', '$_SESSION[player]', '$destinoX', '$destinoY', '$posX', '$posY', '$caduca', '$direccion', '$danioMob', '$arma', 'player')";
+if (!mysqli_query($con, $sql)) {
+    die('error');
 }
 
 echo 'ok';
-?>
